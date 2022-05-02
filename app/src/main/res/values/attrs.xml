@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <declare-styleable name="AspectRatioImageView">
+        <attr name="ratio" format="float"></attr>
+    </declare-styleable>
+
+
+        <item name="item_click_support" type="id" />
+
+    
+</resources>
