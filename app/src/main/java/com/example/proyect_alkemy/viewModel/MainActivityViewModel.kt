@@ -18,6 +18,12 @@ import kotlinx.coroutines.launch
         }
     }
 
+     fun getDetail(){
+         viewModelScope.launch {
+             myResponse.value = movieNetworck.retrofit.getMoviesPopular()
+         }
+     }
+
 
 
 

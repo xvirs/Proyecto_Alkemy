@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lienarLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -16,18 +17,16 @@
             app:ratio="1.5" />
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/purple_500"
+            android:background="#814E4E"
+            android:gravity="center"
             android:padding="8dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@android:color/primary_text_dark"
             android:textSize="10sp"
             tools:text="Prueba" />
-
-
-
 
 
 </LinearLayout>

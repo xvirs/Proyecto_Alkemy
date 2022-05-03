@@ -1,5 +1,6 @@
 package com.example.proyect_alkemy.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -10,14 +11,13 @@ import com.example.proyect_alkemy.R
 import com.example.proyect_alkemy.viewModel.MainActivityViewModel
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity()  {
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
         val viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
@@ -29,7 +29,8 @@ class MainActivity : AppCompatActivity() {
             val layoutManager = GridLayoutManager(this,3)
             recycler.layoutManager = layoutManager
 
-            recycler.adapter = MoviesAdapter( it.results.sortedByDescending { it.title})
+            recycler.adapter = MoviesAdapter( it.results,this)
+
 
 
         })
@@ -37,4 +38,3 @@ class MainActivity : AppCompatActivity() {
 
 
 }
-

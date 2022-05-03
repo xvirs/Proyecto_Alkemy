@@ -15,6 +15,9 @@
             android:name=".view.DetailActivity"
             android:exported="false" />
         <activity
+            android:name=".view.detail_movie"
+            android:exported="false" />
+        <activity
             android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
