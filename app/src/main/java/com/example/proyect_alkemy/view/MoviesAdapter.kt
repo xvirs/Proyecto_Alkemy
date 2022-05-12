@@ -21,11 +21,13 @@ class MoviesAdapter(private val movies: List<Result>, private var contexto: Cont
         val view = LayoutInflater.from(parent.context).inflate(R.layout.view_movie, parent, false)
 
         return ViewHolder(view, contexto)
+
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int)  {
         val  movie = movies[position]
         holder.bind(movie)
+
     }
 
     override fun getItemCount(): Int = movies.size

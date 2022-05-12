@@ -5,6 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MovieNetworck {
 
+
     val retrofit by lazy {
         Retrofit.Builder()
             .baseUrl("https://api.themoviedb.org/")

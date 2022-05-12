@@ -2,7 +2,7 @@ package com.example.proyect_alkemy.model
 
 import java.io.Serializable
 
-var MOVIE_ID_EXTRA = "movieExtra"
+
 data class Result(
     val adult: Boolean,
     val backdrop_path: String,

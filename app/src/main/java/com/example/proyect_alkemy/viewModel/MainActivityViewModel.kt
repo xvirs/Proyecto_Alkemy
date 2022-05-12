@@ -12,17 +12,17 @@ import kotlinx.coroutines.launch
     private val movieNetworck = MovieNetworck()
     val myResponse: MutableLiveData<PopularMovies> = MutableLiveData()
 
-    fun getMovie(){
+    private val link : String = "3/movie/popular?api_key=e34e542dda9bfc0d277e4f73eddfeaee&language=es-ES&page="
+
+    fun getMovie(page : Int?){
+
         viewModelScope.launch {
-            myResponse.value = movieNetworck.retrofit.getMoviesPopular()
+            myResponse.value = movieNetworck.retrofit.getMoviesPopular(link+page)
         }
+
     }
 
-     fun getDetail(){
-         viewModelScope.launch {
-             myResponse.value = movieNetworck.retrofit.getMoviesPopular()
-         }
-     }
+
 
 
 

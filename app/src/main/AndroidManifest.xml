@@ -10,12 +10,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Proyect_Alkemy">
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity
             android:name=".view.DetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.detail_movie"
             android:exported="false" />
         <activity
             android:name=".view.MainActivity"
