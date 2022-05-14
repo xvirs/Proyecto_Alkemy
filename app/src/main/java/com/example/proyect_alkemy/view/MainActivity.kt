@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyect_alkemy.R
 import com.example.proyect_alkemy.viewModel.MainActivityViewModel
+import java.io.IOException
 
 
 class MainActivity : AppCompatActivity()  {
@@ -30,16 +31,16 @@ class MainActivity : AppCompatActivity()  {
         val indice = findViewById<TextView>(R.id.indice)
 
 
+        try {
+            cargarPagina(pagi)
+            indice.text = "pagina  ${pagi}  de  33404..."
+            btnSiguiente.setOnClickListener { pagSiguiente() }
+            btnAnterior.setOnClickListener { pagAnterior() }
+        } catch (e: IOException) {
+            Toast.makeText(this, "no se pudo acceder a la informacion", Toast.LENGTH_SHORT).show()
+        }
 
 
-
-
-
-
-        cargarPagina(pagi)
-        indice.text= "pagina  ${pagi}  de  33404..."
-        btnSiguiente.setOnClickListener { pagSiguiente() }
-        btnAnterior.setOnClickListener { pagAnterior() }
 
     }
 

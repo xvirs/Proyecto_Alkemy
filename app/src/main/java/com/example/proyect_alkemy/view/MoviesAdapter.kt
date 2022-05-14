@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.proyect_alkemy.R
 import com.example.proyect_alkemy.model.Result
+import java.io.IOException
 
 class MoviesAdapter(private val movies: List<Result>, private var contexto: Context) : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
@@ -26,7 +28,15 @@ class MoviesAdapter(private val movies: List<Result>, private var contexto: Cont
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int)  {
         val  movie = movies[position]
-        holder.bind(movie)
+
+        try {
+            holder.bind(movie)
+        } catch (e: IOException) {
+            Toast.makeText(contexto, "no se pudo acceder a la informacion", Toast.LENGTH_SHORT).show()
+        }
+
+
+
 
     }
 
@@ -37,6 +47,8 @@ class MoviesAdapter(private val movies: List<Result>, private var contexto: Cont
 
         private val portada = view.findViewById<ImageView>(R.id.portada)
         private val title = view.findViewById<TextView>(R.id.titulo)
+
+
 
         fun bind(movie: Result) {
 
