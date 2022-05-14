@@ -37,18 +37,29 @@
         android:textStyle="bold"
         tools:text="TITULO : esta es una pelicula flashera" />
 
-    <TextView
-        android:id="@+id/descripcion"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="144dp"
         android:layout_weight="1"
-        android:autoSizeTextType="none"
-        android:background="@color/primaryColor"
-        android:gravity="center"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textStyle="bold|italic"
-        tools:text="vamos a ver como es el mundo del reveZ , vamos a ver como el mundo del rebez, con una manito en la cadera y la otra en la cabeza , menea menaea hasta que se mueva " />
+        android:background="@color/primaryColor">
+
+        <TextView
+            android:id="@+id/descripcion"
+            android:layout_width="375dp"
+            android:layout_height="224dp"
+            android:autoSizeTextType="none"
+            android:background="@drawable/style_border_description"
+            android:backgroundTint="#F63A3A"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="vamos a ver como es el mundo del reveZ , vamos a ver como el mundo del rebez, con una manito en la cadera y la otra en la cabeza , menea menaea hasta que se mueva " />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/fechaEstreno"
