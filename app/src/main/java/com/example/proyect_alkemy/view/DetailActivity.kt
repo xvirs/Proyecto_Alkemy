@@ -23,9 +23,6 @@ class DetailActivity : AppCompatActivity() {
 
         val viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
-
-
-
         viewModel.getMovie(null)
         viewModel.myResponse.observe(this, Observer {
 
@@ -53,9 +50,6 @@ class DetailActivity : AppCompatActivity() {
                 }catch (e: IOException){
                     Toast.makeText(this, "no se pudo acceder a la informacion", Toast.LENGTH_SHORT).show()
                 }
-
-
-
 
             }})
     }

@@ -2,6 +2,9 @@ package com.example.proyect_alkemy.view
 
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,10 +35,6 @@ class MoviesAdapter(private val movies: List<Result>, private var contexto: Cont
         } catch (e: IOException) {
             Toast.makeText(contexto, "no se pudo acceder a la informacion", Toast.LENGTH_SHORT).show()
         }
-
-
-
-
     }
 
     override fun getItemCount(): Int = movies.size
@@ -47,22 +46,43 @@ class MoviesAdapter(private val movies: List<Result>, private var contexto: Cont
         private val title = view.findViewById<TextView>(R.id.titulo)
 
 
-
         fun bind(movie: Result) {
 
             title.text = movie.title
             Glide.with(portada.context).load("https://image.tmdb.org/t/p/original"+movie.poster_path).into(portada)
 
-            view.setOnClickListener(){
-                contexto.startActivity(Intent(contexto, DetailActivity::class.java).putExtra("movie", movie))
-
+            fun isConnected(context: Context): Boolean {
+                val connectivityManager =
+                    context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+                if (connectivityManager != null) {
+                    val capabilities =
+                        connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+                    if (capabilities != null) {
+                        if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                            Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")
+                            return true
+                        } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                            Log.i("Internet", "NetworkCapabilities.TRANSPORT_WIFI")
+                            return true
+                        } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
+                            Log.i("Internet", "NetworkCapabilities.TRANSPORT_ETHERNET")
+                            return true
+                        }
+                    }
+                }
+                return false
             }
+            view.setOnClickListener(){
+            if (isConnected(contexto)){
+
+                    contexto.startActivity(Intent(contexto, DetailActivity::class.java).putExtra("movie", movie))
+
+            }else{
+                Toast.makeText(contexto, "Conecion Fallida : asegúrese  tener acceso a internet para continuar", Toast.LENGTH_SHORT).show()
+            }}
 
         }
     }
-
-
-
 }
 
 

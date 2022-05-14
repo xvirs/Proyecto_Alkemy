@@ -46,48 +46,60 @@ class MainActivity : AppCompatActivity()  {
 
                 cargarPagina(pagi)
                 indice.text = "pagina  ${pagi}  de  33404..."
-                btnSiguiente.setOnClickListener { pagSiguiente() }
-                btnAnterior.setOnClickListener { pagAnterior() }
+
+                btnSiguiente.setOnClickListener {
+                    if(isConnected(this)){
+                        pagSiguiente()
+                    }else{
+                        Toast.makeText(this, "Conecion Fallida : asegúrese  tener acceso a internet para continuar", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                btnAnterior.setOnClickListener {
+                    if(isConnected(this)){
+                        pagAnterior()
+                    }else{
+                        Toast.makeText(this, "Conecion Fallida : asegúrese  tener acceso a internet para continuar", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
             } catch (e: IOException) {
-                Toast.makeText(this, "no se pudo acceder a la informacion", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "no se pudo acceder a la informacion solicitada", Toast.LENGTH_SHORT).show()
             }
 
         }else{
             Toast.makeText(this, "Conecion Fallida : asegúrese  tener acceso a internet para continuar", Toast.LENGTH_SHORT).show()
         }
 
-
     }
 
 
     private fun pagSiguiente(){
-        if (pagi <= 33404){
-            pagi++
-            cargarPagina(pagi)
-            val indice = findViewById<TextView>(R.id.indice)
-            indice.text= "pagina  ${pagi}  de  33404..."
-        }else {
-            Toast.makeText(this, "No hay mas paginas disponibles", Toast.LENGTH_SHORT).show()
-        }
+            if (pagi <= 33404){
+                pagi++
+                cargarPagina(pagi)
+                val indice = findViewById<TextView>(R.id.indice)
+                indice.text= "pagina  ${pagi}  de  33404..."
+            }else {
+                Toast.makeText(this, "No hay mas paginas disponibles", Toast.LENGTH_SHORT).show()
+            }
     }
 
     private fun pagAnterior(){
-        if (pagi > 1){
-            pagi--
-            cargarPagina(pagi)
-            val indice = findViewById<TextView>(R.id.indice)
-            indice.text= "pagina  ${pagi}  de  33404..."
-        }else {
-            Toast.makeText(this, "No hay mas paginas disponibles", Toast.LENGTH_SHORT).show()
-        }
+
+            if (pagi > 1){
+                pagi--
+                cargarPagina(pagi)
+                val indice = findViewById<TextView>(R.id.indice)
+                indice.text= "pagina  ${pagi}  de  33404..."
+            }else {
+                Toast.makeText(this, "No hay mas paginas disponibles", Toast.LENGTH_SHORT).show()
+            }
     }
 
 
     private fun cargarPagina(pagina: Int) {
         val viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         viewModel.getMovie(pagina)
-
-
 
         viewModel.myResponse.observe(this, Observer {
 
@@ -100,7 +112,6 @@ class MainActivity : AppCompatActivity()  {
 
                 val layoutManager = GridLayoutManager(this,3)
                 recycler.layoutManager = layoutManager
-
 
                 recycler.adapter = MoviesAdapter( it.results,this)
 
